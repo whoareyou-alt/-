@@ -125,7 +125,7 @@ namespace orzServer {
                 m_dtWinners.Rows.Remove(row);
             }
 
-            m_dictPirzeCount[strName] = iPrizeCount;
+            m_dictPirzeCount[strUserName] = iPrizeCount;
 
         }
         /*******************************/
@@ -133,7 +133,7 @@ namespace orzServer {
         {
             m_strPizesList.Clear();
             //string strFileName = SelectFilePath();      //获取所选文件路径
-            string strFileName = "D:\\测试集.xlsx";       //仅测试时候使用
+            string strFileName = "D:\\测试集_奖品.xlsx";       //仅测试时候使用
             if ( strFileName == null ) {
                 throw new MoonException("未选择文件！！");
             }

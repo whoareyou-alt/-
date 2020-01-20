@@ -11,11 +11,15 @@ using System.Windows.Forms;
 using orzServer;
 namespace orz
 {
+    public delegate void ResetPrizeList();
     public partial class DataView_Winners : Form
     {
         bool SelTheSame = false;
         orzServer.MoonServer Moon;
         DataTable dtWinners;
+
+        public event ResetPrizeList ResetPrize;
+
         public DataView_Winners()
         {
             InitializeComponent();
@@ -28,7 +32,7 @@ namespace orz
             dataGridView1.DataSource = dtWinners;
 
             comboBox1.Items.Add("全、ALL");
-            comboBox1.Items.Add("123");
+            //comboBox1.Items.Add("123");
             comboBox1.SelectedItem = "全、ALL";
             foreach ( var item in Moon.GetPrizeCount() ) {
                 if ( item.Value > 1 ) {
@@ -72,7 +76,7 @@ namespace orz
                     Moon.SelectPrize(dts, comboBox1.SelectedItem.ToString());
                     dtWinners = Moon.GetDTWinners();
 
-                    DataTable dt = new DataTable();
+                    /*DataTable dt = new DataTable();
                     DataColumn dc = new DataColumn("奖品");
                     dt.Columns.Add(dc);
                     string strSelect = "参与者 = '" + comboBox1.SelectedItem.ToString() + "'";
@@ -80,9 +84,9 @@ namespace orz
                     SelTheSame = true;
                     foreach ( var row in data ) {
                         dt.Rows.Add(row[1]);
-                    }
-
-                    dataGridView1.DataSource = dt;
+                    }*/
+                    comboBox1.SelectedItem = "全、ALL";
+                    dataGridView1.DataSource = dtWinners;
                 }
             }
         }
@@ -94,7 +98,7 @@ namespace orz
         private void DataView_Winners_FormClosing(object sender, FormClosingEventArgs e)
         {
             //需要重置主界面 奖品combox
-
+            ResetPrize();
         }
     }
 }

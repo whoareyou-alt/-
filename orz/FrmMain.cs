@@ -18,11 +18,11 @@ namespace orz {
         private orzServer.Record record;        //
 
         List<string> strUsersList;              //用户列表
-        int iLucyNum = -1;                          
+        private bool start = false;             //开始、结束 抽奖 标识
+        int iLucyNum = -1;
         //Thread Dice;
 
         System.Timers.Timer timer = new System.Timers.Timer(interval: 1); // 定时器
-        private bool start = false;             //开始、结束 抽奖 标识
         
         public FrmMain()
         {
@@ -69,10 +69,12 @@ namespace orz {
             DataView_Grid dvg = new DataView_Grid(dt, (int)DataType.UserList);
             dvg.Show();
         }
+        //查看获奖名单
         private void WinnersList_Click(object sender, EventArgs e)
         {
             DataTable dtWinners = Moon.GetDTWinners();
             DataView_Winners dvw = new DataView_Winners();
+            dvw.ResetPrize += new ResetPrizeList(orz_ResetPrizeList);
             dvw.ShowDialog();
         }
         private void ImportPrizesList_Click(object sender, EventArgs e)
@@ -144,6 +146,11 @@ namespace orz {
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             record.SaveInFile();
+        }
+
+        void orz_ResetPrizeList()
+        {
+            cbPrizeList.DataSource = Moon.GetPizesList();
         }
     }
 }
