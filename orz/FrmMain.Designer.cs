@@ -27,15 +27,10 @@
             this.Menu1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportUsersList = new System.Windows.Forms.ToolStripMenuItem();
             this.UsersList = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ImportPrizesList = new System.Windows.Forms.ToolStripMenuItem();
-            this.PrizesList = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.WinnersList = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbPrizeList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.roundButton1 = new orz.roundButton();
+            this.已中奖ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -58,11 +53,7 @@
             this.Menu1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ImportUsersList,
             this.UsersList,
-            this.toolStripSeparator1,
-            this.ImportPrizesList,
-            this.PrizesList,
-            this.toolStripSeparator2,
-            this.WinnersList});
+            this.已中奖ToolStripMenuItem});
             this.Menu1.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F);
             this.Menu1.Name = "Menu1";
             this.Menu1.Size = new System.Drawing.Size(51, 24);
@@ -71,87 +62,43 @@
             // ImportUsersList
             // 
             this.ImportUsersList.Name = "ImportUsersList";
-            this.ImportUsersList.Size = new System.Drawing.Size(138, 24);
+            this.ImportUsersList.Size = new System.Drawing.Size(152, 24);
             this.ImportUsersList.Text = "导入用户";
             this.ImportUsersList.Click += new System.EventHandler(this.ImportUsersList_Click);
             // 
             // UsersList
             // 
             this.UsersList.Name = "UsersList";
-            this.UsersList.Size = new System.Drawing.Size(138, 24);
+            this.UsersList.Size = new System.Drawing.Size(152, 24);
             this.UsersList.Text = "用户列表";
             this.UsersList.Click += new System.EventHandler(this.UsersList_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(135, 6);
-            // 
-            // ImportPrizesList
-            // 
-            this.ImportPrizesList.Name = "ImportPrizesList";
-            this.ImportPrizesList.Size = new System.Drawing.Size(138, 24);
-            this.ImportPrizesList.Text = "导入奖品";
-            this.ImportPrizesList.Click += new System.EventHandler(this.ImportPrizesList_Click);
-            // 
-            // PrizesList
-            // 
-            this.PrizesList.Name = "PrizesList";
-            this.PrizesList.Size = new System.Drawing.Size(138, 24);
-            this.PrizesList.Text = "奖品列表";
-            this.PrizesList.Click += new System.EventHandler(this.PrizesList_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(135, 6);
-            // 
-            // WinnersList
-            // 
-            this.WinnersList.Name = "WinnersList";
-            this.WinnersList.Size = new System.Drawing.Size(138, 24);
-            this.WinnersList.Text = "获奖名单";
-            this.WinnersList.Click += new System.EventHandler(this.WinnersList_Click);
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.cbPrizeList, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.roundButton1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.roundButton1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 28);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.34599F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.81818F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.8961F));
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.28788F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.71212F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(555, 338);
             this.tableLayoutPanel1.TabIndex = 3;
-            // 
-            // cbPrizeList
-            // 
-            this.cbPrizeList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbPrizeList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPrizeList.Font = new System.Drawing.Font("宋体", 16F);
-            this.cbPrizeList.FormattingEnabled = true;
-            this.cbPrizeList.Location = new System.Drawing.Point(23, 23);
-            this.cbPrizeList.Name = "cbPrizeList";
-            this.cbPrizeList.Size = new System.Drawing.Size(509, 29);
-            this.cbPrizeList.TabIndex = 0;
-            this.cbPrizeList.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("幼圆", 54F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(23, 64);
+            this.label1.Location = new System.Drawing.Point(23, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(509, 174);
+            this.label1.Size = new System.Drawing.Size(509, 204);
             this.label1.TabIndex = 1;
             this.label1.Text = "风霜碎月";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -163,13 +110,20 @@
             this.roundButton1.FlatAppearance.BorderSize = 0;
             this.roundButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.roundButton1.Font = new System.Drawing.Font("华文新魏", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.roundButton1.Location = new System.Drawing.Point(442, 241);
+            this.roundButton1.Location = new System.Drawing.Point(442, 227);
             this.roundButton1.Name = "roundButton1";
-            this.roundButton1.Size = new System.Drawing.Size(90, 84);
+            this.roundButton1.Size = new System.Drawing.Size(90, 98);
             this.roundButton1.TabIndex = 2;
             this.roundButton1.Text = "月月的肯定";
             this.roundButton1.UseVisualStyleBackColor = false;
             this.roundButton1.Click += new System.EventHandler(this.rbtnDiceRoller_Click);
+            // 
+            // 已中奖ToolStripMenuItem
+            // 
+            this.已中奖ToolStripMenuItem.Name = "已中奖ToolStripMenuItem";
+            this.已中奖ToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.已中奖ToolStripMenuItem.Text = "已中奖";
+            this.已中奖ToolStripMenuItem.Click += new System.EventHandler(this.已中奖ToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -199,15 +153,10 @@
         private System.Windows.Forms.ToolStripMenuItem Menu1;
         private System.Windows.Forms.ToolStripMenuItem ImportUsersList;
         private System.Windows.Forms.ToolStripMenuItem UsersList;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem PrizesList;
-        private System.Windows.Forms.ToolStripMenuItem ImportPrizesList;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ComboBox cbPrizeList;
         private System.Windows.Forms.Label label1;
         private roundButton roundButton1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem WinnersList;
+        private System.Windows.Forms.ToolStripMenuItem 已中奖ToolStripMenuItem;
     }
 }
 

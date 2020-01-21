@@ -78,22 +78,20 @@
             this.simpleView});
             this.ContextMenu1.Name = "cMenu_User";
             this.ContextMenu1.ShowImageMargin = false;
-            this.ContextMenu1.Size = new System.Drawing.Size(76, 48);
+            this.ContextMenu1.Size = new System.Drawing.Size(128, 70);
             // 
             // detailView
             // 
             this.detailView.Name = "detailView";
-            this.detailView.Size = new System.Drawing.Size(75, 22);
+            this.detailView.Size = new System.Drawing.Size(127, 22);
             this.detailView.Text = "详细";
-            this.detailView.Visible = false;
             this.detailView.Click += new System.EventHandler(this.detailView_Click);
             // 
             // simpleView
             // 
             this.simpleView.Name = "simpleView";
-            this.simpleView.Size = new System.Drawing.Size(75, 22);
+            this.simpleView.Size = new System.Drawing.Size(127, 22);
             this.simpleView.Text = "简略";
-            this.simpleView.Visible = false;
             this.simpleView.Click += new System.EventHandler(this.simpleView_Click);
             // 
             // DataView_Grid

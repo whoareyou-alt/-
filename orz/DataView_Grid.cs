@@ -10,42 +10,22 @@ using System.Windows.Forms;
 
 namespace orz
 {
-    public enum DataType {
-        UserList = 0, PrizeList = 1
-        }
     public partial class DataView_Grid : Form
     {
-        int Mode;
         DataTable dtDetail;
         Dictionary<string, int> dictSimple;
         public DataView_Grid()
         {
             InitializeComponent();
         }
-        public DataView_Grid(DataTable dt, int DataType)
+        public DataView_Grid(DataTable dt)
         {
             InitializeComponent();
             dtDetail = dt;
-
-            Mode = DataType;
         }
 
         private void DataView_Grid_Load(object sender, EventArgs e)
         {
-            switch (Mode){
-                case (int)DataType.UserList:
-                    //ContextMenu1.Enabled = true;
-                    detailView.Visible = true;
-                    simpleView.Visible = true;
-
-                    break;
-
-                case (int)DataType.PrizeList:
-                    break;
-
-                default:
-                    break;
-            }
             dataGridView1.DataSource = dtDetail;
         }
 

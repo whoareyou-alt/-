@@ -15,7 +15,6 @@ namespace orz {
     {
 
         private orzServer.MoonServer Moon;      //
-        private orzServer.Record record;        //
 
         List<string> strUsersList;              //用户列表
         private bool start = false;             //开始、结束 抽奖 标识
@@ -32,7 +31,6 @@ namespace orz {
         private void FrmMain_Load(object sender, EventArgs e)
         {
             Moon = orzServer.MoonServer.GetServer();
-            record = orzServer.Record.GetServer();
 
             timer.Elapsed += Timer_Elapsed;
         }
@@ -66,57 +64,14 @@ namespace orz {
                 dt.Rows.Add(str);
             }
             //在新窗口显示用户列表
-            DataView_Grid dvg = new DataView_Grid(dt, (int)DataType.UserList);
-            dvg.Show();
-        }
-        //查看获奖名单
-        private void WinnersList_Click(object sender, EventArgs e)
-        {
-            DataTable dtWinners = Moon.GetDTWinners();
-            DataView_Winners dvw = new DataView_Winners();
-            dvw.ResetPrize += new ResetPrizeList(orz_ResetPrizeList);
-            dvw.ShowDialog();
-        }
-        private void ImportPrizesList_Click(object sender, EventArgs e)
-        {
-            try {
-                Moon.ImportPizesList();     //导入奖品列表
-                MessageBox.Show("导入成功！！", "这是提示");
-
-                cbPrizeList.DataSource = Moon.GetPizesList();   //把奖品列表加载到控件中
-                cbPrizeList.SelectedIndex = 0;
-            } catch ( MoonException ex ) {
-                MessageBox.Show(ex.Message, "出错啦");
-            } finally {
-            }
-        }
-
-        //查看奖品
-        private void PrizesList_Click(object sender, EventArgs e)
-        {
-            List<string> strUsersList = Moon.GetPizesList();    //获取奖品列表
-            DataTable dt = new DataTable("Table_Pizes");
-
-            DataColumn dc1 = new DataColumn("奖品", System.Type.GetType("System.String"));
-            dt.Columns.Add(dc1);
-
-            //把奖品数据保存到DataTable
-            foreach ( string str in strUsersList ) {
-                dt.Rows.Add(str);
-            }
-            //在新窗口显示奖品列表
-            DataView_Grid dvg = new DataView_Grid(dt, (int)DataType.PrizeList);
+            DataView_Grid dvg = new DataView_Grid(dt);
             dvg.Show();
         }
 
         //开始抽奖
         private void rbtnDiceRoller_Click(object sender, EventArgs e)
         {
-            if ( roundButton1.Text == "下一轮" ) {
-                cbPrizeList.DataSource = null;
-                cbPrizeList.DataSource = Moon.GetPizesList();
-                roundButton1.Text = "月月的肯定";
-            } else {
+            if ( strUsersList != null ) {
                 start = !start;
                 if ( start ) {      //开始
                     timer.Start();
@@ -124,19 +79,13 @@ namespace orz {
                 } else if ( ( !start ) && ( iLucyNum != -1 ) ) {     //结算
                     timer.Close();
 
-                    Moon.AddWinner(label1.Text, cbPrizeList.SelectedItem.ToString());
-                    Moon.DeletePrize(cbPrizeList.SelectedItem.ToString());
-                    roundButton1.Text = "下一轮";
-
-                    //添加记录
-                    Msg msg = new Msg { time = DateTime.Now.ToString("G") };
-                    string strMessage;
-                    strMessage = label1.Text + "  抽到了  " + cbPrizeList.SelectedItem.ToString();
-                    msg.msg = strMessage;
-                    record.Write(msg);
+                    string strLucy = strUsersList[iLucyNum];
+                    string strTime = DateTime.Now.ToString("G");
+                    Moon.AddWinners(strLucy, strTime);
                 }
+            } else {
+                MessageBox.Show("你该不会连用户数据都没有吧，那直接写上碎月的名字好了！");
             }
-            
         }
 
         private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -149,15 +98,30 @@ namespace orz {
                 Invoke(action);
             }
         }
+        private void 已中奖ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Msg> dictWinners = Moon.GetWinnersList();
 
+            DataTable dtWinners = new DataTable();
+            DataColumn dcUser = new DataColumn("参与者", System.Type.GetType("System.String"));
+            DataColumn dcTime = new DataColumn("时间", System.Type.GetType("System.String"));
+            dtWinners.Columns.Add(dcUser);
+            dtWinners.Columns.Add(dcTime);
+
+            foreach ( var data in dictWinners ) {
+                DataRow dr = dtWinners.NewRow();
+                dr[0] = data.strUserName;
+                dr[1] = data.strDateTime;
+                dtWinners.Rows.Add(dr);
+            }
+
+            DataView_Grid dwg = new DataView_Grid(dtWinners);
+            dwg.ShowDialog();
+        }
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            record.SaveInFile();
+
         }
 
-        void orz_ResetPrizeList()
-        {
-            cbPrizeList.DataSource = Moon.GetPizesList();
-        }
     }
 }

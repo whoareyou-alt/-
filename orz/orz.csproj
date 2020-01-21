@@ -58,14 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Add.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Add.Designer.cs">
-      <DependentUpon>Add.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BLL\IRecord.cs" />
-    <Compile Include="BLL\Record.cs" />
     <Compile Include="Class1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -74,12 +66,6 @@
     </Compile>
     <Compile Include="DataView_Grid.Designer.cs">
       <DependentUpon>DataView_Grid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DataView_Winners.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DataView_Winners.Designer.cs">
-      <DependentUpon>DataView_Winners.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -91,14 +77,8 @@
     <Compile Include="BLL\MoonServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Add.resx">
-      <DependentUpon>Add.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DataView_Grid.resx">
       <DependentUpon>DataView_Grid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DataView_Winners.resx">
-      <DependentUpon>DataView_Winners.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
