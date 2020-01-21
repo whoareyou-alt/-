@@ -76,15 +76,6 @@ namespace orz
                     Moon.SelectPrize(dts, comboBox1.SelectedItem.ToString());
                     dtWinners = Moon.GetDTWinners();
 
-                    /*DataTable dt = new DataTable();
-                    DataColumn dc = new DataColumn("奖品");
-                    dt.Columns.Add(dc);
-                    string strSelect = "参与者 = '" + comboBox1.SelectedItem.ToString() + "'";
-                    var data = dtWinners.Select(strSelect);
-                    SelTheOne = true;
-                    foreach ( var row in data ) {
-                        dt.Rows.Add(row[1]);
-                    }*/
                     comboBox1.SelectedItem = "全、ALL";
                     foreach ( var item in Moon.GetPrizeCount() ) {
                         if ( item.Value > 1 ) {
@@ -109,17 +100,20 @@ namespace orz
         private void 全都不要ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if ( SelTheOne ) {
-                DataRow[] dts = dtWinners.Select(string.Format("参与者 = '{1}'", comboBox1.SelectedItem.ToString()));        //获取未选择的奖品
+                DialogResult Confirm = MessageBox.Show("你确定", "选择提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                if ( Confirm == DialogResult.OK ) {     //二次确认
+                    DataRow[] dts = dtWinners.Select(string.Format("参与者 = '{1}'", comboBox1.SelectedItem.ToString()));        //获取未选择的奖品
 
-                Moon.SelectPrize(dts, comboBox1.SelectedItem.ToString(), 0);
-                dtWinners = Moon.GetDTWinners();
+                    Moon.SelectPrize(dts, comboBox1.SelectedItem.ToString(), 0);
+                    dtWinners = Moon.GetDTWinners();
 
-                comboBox1.SelectedItem = "全、ALL";
-                foreach ( var item in Moon.GetPrizeCount() ) {
-                    if ( item.Value > 1 ) {
-                        comboBox1.Items.Add(item.Key);
+                    comboBox1.SelectedItem = "全、ALL";
+                    foreach ( var item in Moon.GetPrizeCount() ) {
+                        if ( item.Value > 1 ) {
+                            comboBox1.Items.Add(item.Key);
+                        }
+                        dataGridView1.DataSource = dtWinners;
                     }
-                    dataGridView1.DataSource = dtWinners;
                 }
             }
         }

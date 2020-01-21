@@ -179,33 +179,5 @@ namespace orzServer {
             }
             return null;
         }
-
-        private void LoadTest()
-        {
-            m_strPizesList.Clear();
-            //string strFileName = SelectFilePath();      //获取所选文件路径
-            string strFileName = "D:\\测试集_奖品选择.xlsx";       //仅测试时候使用
-            if ( strFileName == null ) {
-                throw new MoonException("未选择文件！！");
-            }
-            Workbook workbook = new Workbook();
-            workbook.LoadFromFile(strFileName);
-            Worksheet sheet = workbook.Worksheets[0];   //获取第一个工作表
-
-            m_dtWinners = sheet.ExportDataTable();
-
-            /*
-            //测试数据导入
-            foreach ( DataRow dr in m_dtWinners.Rows ) {
-                string key = dr.ItemArray[0].ToString();
-                //string value = (dr.ItemArray[1].ToString());
-
-                if ( m_dictPirzeCount.Keys.Contains(key) ) {
-                    m_dictPirzeCount[key] += 1;
-                } else {
-                    m_dictPirzeCount.Add(key, 1);
-                }
-            }*/
-        }
     }
 }
