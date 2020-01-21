@@ -1,5 +1,4 @@
 # -
-orz233
 C#语言， .Net Framework 4.0
 第三方库Spire操作Excel数据
 注意：
