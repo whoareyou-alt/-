@@ -112,24 +112,31 @@ namespace orz {
         //开始抽奖
         private void rbtnDiceRoller_Click(object sender, EventArgs e)
         {
-            start = !start;
-            if ( start ) {      //开始
-                timer.Start();
+            if ( roundButton1.Text == "下一轮" ) {
+                cbPrizeList.DataSource = null;
+                cbPrizeList.DataSource = Moon.GetPizesList();
+                roundButton1.Text = "月月的肯定";
+            } else {
+                start = !start;
+                if ( start ) {      //开始
+                    timer.Start();
 
-            } else if( (!start) && (iLucyNum != -1) ) {     //结算
-                timer.Close();
+                } else if ( ( !start ) && ( iLucyNum != -1 ) ) {     //结算
+                    timer.Close();
 
-                Moon.AddWinner(strUsersList[iLucyNum], cbPrizeList.SelectedItem.ToString());
-                Moon.DeletePrize(cbPrizeList.SelectedItem.ToString());
-                cbPrizeList.DataSource = Moon.GetPizesList();   //刷新控件中奖品列表
+                    Moon.AddWinner(label1.Text, cbPrizeList.SelectedItem.ToString());
+                    Moon.DeletePrize(cbPrizeList.SelectedItem.ToString());
+                    roundButton1.Text = "下一轮";
 
-                //添加记录
-                Msg msg = new Msg { time = DateTime.Now.ToString("G") };
-                string strMessage;
-                strMessage = strUsersList[iLucyNum] + "  抽到了  " + cbPrizeList.SelectedItem.ToString();
-                msg.msg = strMessage;
-                record.Write(msg);      
+                    //添加记录
+                    Msg msg = new Msg { time = DateTime.Now.ToString("G") };
+                    string strMessage;
+                    strMessage = label1.Text + "  抽到了  " + cbPrizeList.SelectedItem.ToString();
+                    msg.msg = strMessage;
+                    record.Write(msg);
+                }
             }
+            
         }
 
         private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

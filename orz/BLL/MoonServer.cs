@@ -46,7 +46,7 @@ namespace orzServer {
             DataColumn prize = new DataColumn("奖品", System.Type.GetType("System.String"));
             m_dtWinners.Columns.Add(prize);
 
-            LoadTest();     //仅测试用
+            //LoadTest();     //仅测试用
         }    
         public static MoonServer GetServer()    //获取实例
         {
@@ -77,8 +77,8 @@ namespace orzServer {
         public void ImportUsersList()
         {
             m_strUsersList.Clear();
-            //string strFileName = SelectFilePath();
-            string strFileName = "D:\\测试集.xlsx";    //仅测试时候使用！！！！
+            string strFileName = SelectFilePath();
+            //string strFileName = "D:\\测试集.xlsx";    //仅测试时候使用！！！！
             if ( strFileName == null ) {
                 throw new MoonException("未选择文件！！");
             }
@@ -120,9 +120,9 @@ namespace orzServer {
         public void SelectPrize(DataRow[] rows, string strUserName, int iPrizeCount = 1)     
         {
             
-            foreach ( DataRow row in rows ) {       //删除指定的行
-                m_strPizesList.Add(row[0].ToString());
-                m_dtWinners.Rows.Remove(row);
+            foreach ( DataRow row in rows ) {       
+                m_strPizesList.Add(row[1].ToString());  //把奖品重新添加到List中
+                m_dtWinners.Rows.Remove(row);   //删除获奖名单中指定的行
             }
 
             m_dictPirzeCount[strUserName] = iPrizeCount;
@@ -132,8 +132,8 @@ namespace orzServer {
         public void ImportPizesList()
         {
             m_strPizesList.Clear();
-            //string strFileName = SelectFilePath();      //获取所选文件路径
-            string strFileName = "D:\\测试集_奖品.xlsx";       //仅测试时候使用
+            string strFileName = SelectFilePath();      //获取所选文件路径
+            //string strFileName = "D:\\测试集_奖品.xlsx";       //仅测试时候使用
             if ( strFileName == null ) {
                 throw new MoonException("未选择文件！！");
             }
@@ -155,7 +155,7 @@ namespace orzServer {
             m_strPizesList.Remove(strPrizeName);
         }
         /*******************************/
-        public void ExportWinnersList() //未测试
+        public void ExportWinnersList()
         {
             string strFileName = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
             string strFileName1 = DateTime.Now.ToString("F").Replace(':', '-');      //保存文件名
@@ -193,6 +193,19 @@ namespace orzServer {
             Worksheet sheet = workbook.Worksheets[0];   //获取第一个工作表
 
             m_dtWinners = sheet.ExportDataTable();
+
+            /*
+            //测试数据导入
+            foreach ( DataRow dr in m_dtWinners.Rows ) {
+                string key = dr.ItemArray[0].ToString();
+                //string value = (dr.ItemArray[1].ToString());
+
+                if ( m_dictPirzeCount.Keys.Contains(key) ) {
+                    m_dictPirzeCount[key] += 1;
+                } else {
+                    m_dictPirzeCount.Add(key, 1);
+                }
+            }*/
         }
     }
 }

@@ -33,6 +33,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.全都不要ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -41,9 +42,10 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.全都不要ToolStripMenuItem,
             this.ExportInExcel});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(130, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
             // 
             // ExportInExcel
             // 
@@ -98,6 +100,13 @@
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 
+            // 全都不要ToolStripMenuItem
+            // 
+            this.全都不要ToolStripMenuItem.Name = "全都不要ToolStripMenuItem";
+            this.全都不要ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.全都不要ToolStripMenuItem.Text = "全都不要";
+            this.全都不要ToolStripMenuItem.Click += new System.EventHandler(this.全都不要ToolStripMenuItem_Click);
+            // 
             // DataView_Winners
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -121,5 +130,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ToolStripMenuItem 全都不要ToolStripMenuItem;
     }
 }
